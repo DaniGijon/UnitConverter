@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -34,6 +33,7 @@ public class WeightServlet extends HttpServlet {
 		BigDecimal weightAmount = new BigDecimal(weight_input_str);
 		BigDecimal weightResult = new BigDecimal(0);
 		String weightResultStr="";
+		String weightAmountStr="";
 		
 		switch (weight_unit_from.trim()) {
 			case "milligram":
@@ -135,9 +135,10 @@ public class WeightServlet extends HttpServlet {
 		}
 		
 		weightResultStr = String.valueOf(weightResult);
+		weightAmountStr = String.valueOf(weightAmount);
 		
         // Set data as an attribute in the request
-		request.setAttribute("input", weight_input_str);
+		request.setAttribute("input", weightAmountStr);
         request.setAttribute("result", weightResultStr);
         request.setAttribute("unit_from", weight_unit_from);
         request.setAttribute("unit_to", weight_unit_to);

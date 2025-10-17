@@ -33,6 +33,7 @@ public class TemperatureServlet extends HttpServlet {
 		BigDecimal temperatureAmount = new BigDecimal(temperature_input_str);
 		BigDecimal temperatureResult = new BigDecimal(0);
 		String temperatureResultStr="";
+		String temperatureAmountStr="";
 		
 		switch (temperature_unit_from.trim()) {
 			case "fahrenheit" :
@@ -87,9 +88,10 @@ public class TemperatureServlet extends HttpServlet {
 		}
 		
 		temperatureResultStr = String.valueOf(temperatureResult);
+		temperatureAmountStr = String.valueOf(temperatureAmount);
 		
         // Set data as an attribute in the request
-		request.setAttribute("input", temperature_input_str);
+		request.setAttribute("input", temperatureAmountStr);
         request.setAttribute("result", temperatureResultStr);
         request.setAttribute("unit_from", temperature_unit_from);
         request.setAttribute("unit_to", temperature_unit_to);

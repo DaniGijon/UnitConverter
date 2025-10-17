@@ -7,10 +7,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Date;
 
 @WebServlet("/Length")
 public class LengthServlet extends HttpServlet {
@@ -35,6 +33,7 @@ public class LengthServlet extends HttpServlet {
 		BigDecimal lengthAmount = new BigDecimal(length_input_str);
 		BigDecimal lengthResult = new BigDecimal(0);
 		String lengthResultStr = "";
+		String lengthAmountStr = "";
 		
 		switch (length_unit_from.trim()) {
 			case "milimeters":
@@ -264,9 +263,10 @@ public class LengthServlet extends HttpServlet {
 		}
 		
 		lengthResultStr = String.valueOf(lengthResult);
+		lengthAmountStr = String.valueOf(lengthAmount);
 		
         // Set data as an attribute in the request
-		request.setAttribute("input", length_input_str);
+		request.setAttribute("input", lengthAmountStr);
         request.setAttribute("result", lengthResultStr);
         request.setAttribute("unit_from", length_unit_from);
         request.setAttribute("unit_to", length_unit_to);
