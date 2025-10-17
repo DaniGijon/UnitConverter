@@ -9,14 +9,12 @@
 	</head>
 	<body>
 		<div class="container">
-		<div>
-			<h2>Unit Converter</h2>
-			<br>
-			<h3>Date=<%= new Date() %>
-			</h3>
-			</div>
 			<div>
-				<form id="formLength" action="processGet.jsp" method="GET">
+				<h2>Unit Converter</h2>
+				
+				</div>
+			<div>
+				<form id="formLength" action="/UnitConverter/Length" method="GET"">
 					<h3>Length</h3>
 					<datalist id="length_units">
 						<option value="milimeters"></option>
@@ -43,7 +41,74 @@
 					<div>
 						<input type="submit" id="length_convert_submit" name="length_convert_submit" value="Convert"></input>
 					</div>
+					
 				</form>
+				
+				<form id="formWeight" action="/UnitConverter/Weight" method="GET"">
+					<h3>Weight</h3>
+					<datalist id="weight_units">
+						<option value=milligram></option>
+						<option value="gram"></option>
+						<option value="kilogram"></option>
+						<option value="ounce"></option>
+						<option value="pound"></option>
+					</datalist>
+					<div>
+						<label for="weight_input">Enter the weight to convert</label>
+						<input type="number" id="weight_input" name="weight_input" required min="0" value="0" step="0.001"></input>
+					</div>
+					<div>
+						<label for="weight_unit_from">Unit to Convert from</label>
+						<input type="text" list="weight_units" id="weight_unit_from" name="weight_unit_from"></input>
+					</div>
+					<div>
+						<label for="weight_unit_to">Unit to convert to</label>
+						<input type="text" list="weight_units" id="weight_unit_to" name="weight_unit_to" required></input>
+					</div>
+					<div>
+						<input type="submit" id="weight_convert_submit" name="weight_convert_submit" value="Convert"></input>
+					</div>
+					
+				</form>
+				
+				<form id="formTemperature" action="/UnitConverter/Temperature" method="GET"">
+					<h3>Temperature</h3>
+					<datalist id="temperature_units">
+						<option value=celsius></option>
+						<option value="fahrenheit"></option>
+						<option value="kelvin"></option>
+					</datalist>
+					<div>
+						<label for="temperature_input">Enter the temperature to convert</label>
+						<input type="number" id="temperature_input" name="temperature_input" required min="0" value="0" step="0.001"></input>
+					</div>
+					<div>
+						<label for="temperature_unit_from">Unit to Convert from</label>
+						<input type="text" list="temperature_units" id="temperature_unit_from" name="temperature_unit_from"></input>
+					</div>
+					<div>
+						<label for="temperature_unit_to">Unit to convert to</label>
+						<input type="text" list="temperature_units" id="temperature_unit_to" name="temperature_unit_to" required></input>
+					</div>
+					<div>
+						<input type="submit" id="temperature_convert_submit" name="temperature_convert_submit" value="Convert"></input>
+					</div>
+					
+				</form>
+				
+				<div>
+					<h3>Result of your calculation</h3>
+						<h4>
+							<% 
+						        String input = (String) request.getAttribute("input");
+						        String result = (String) request.getAttribute("result");
+						        String unit_from = (String) request.getAttribute("unit_from");
+					            String unit_to = (String) request.getAttribute("unit_to");
+					            out.println(input + " " + unit_from + " = " + result + " " + unit_to);
+					        %>
+				        </h4>
+					</h3>
+				</div>
 			</div>
 		</div>
 	</body>
